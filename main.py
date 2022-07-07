@@ -38,15 +38,26 @@ def get_lyrics():
     song_artist = genius_api['response']['sections'][0]['hits'][0]['result']['artist_names']
     url = genius_api['response']['sections'][0]['hits'][0]['result']['url']
     #print(url)
-    response = requests.get(url).text.replace('<br>', ' ').replace('<br/>', ' ').replace('<br />', ' ')
-    soup = BeautifulSoup(response, 'html.parser')
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
     song = soup.find('div', class_='Lyrics__Container-sc-1ynbvzw-6 YYrds')
 
-    output = song
+    
+    output = str(song).split('<br/>')
+    lines = []
+    for line in output:
+        line_soup = BeautifulSoup(line, 'html.parser')
+        line = line_soup.get_text()
+        print(f'.{line}.')
+        if line != '' and line.startswith('[') == False:
+            lines.append(line)
 
 
-    print(output)
-    return str(output)    
+    return {
+        'song_name': song_name,
+        'song_artist': song_artist,
+        'lyrics': lines
+    }
 
 
 
