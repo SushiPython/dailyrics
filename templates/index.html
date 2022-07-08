@@ -4,9 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dailyrics</title>
+    <title>dailyrics</title>
 </head>
 <body>
-    <a href="{{url}}">Login</a>
+    <div id="player" class="center">
+        <h1>dailyrics</h1>
+        <button onclick="window.location.replace('{{url}}')">login</button>
+    </div>
 </body>
 </html>
+<style>
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+</style>
