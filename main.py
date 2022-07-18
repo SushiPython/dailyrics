@@ -88,7 +88,8 @@ def search():
     data = response.json()
     tracks = []
     for track in data['results']['trackmatches']['track']:
-        tracks.append(track['name'])
+        if (track['name'] not in tracks):
+            tracks.append(track['name'])
     return {
         "results": tracks
     }
