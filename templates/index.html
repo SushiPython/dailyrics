@@ -9,7 +9,10 @@
 <body>
     <div id="player" class="center">
         <h1>dailyrics</h1>
-        <button onclick="window.location.replace('{{url}}')">login</button>
+        <form action="/guess" method="get">
+            <input type="text" name="username" placeholder="lastfm username">
+            <input type="submit">
+        </form>
     </div>
 </body>
 </html>
