@@ -5,13 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dailyrics</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 <body>
     <div id="player" class="center">
-        <h1>dailyrics</h1>
+        <h1 class="title is-1">dailyrics</h1>
         <form action="/guess" method="get">
-            <input type="text" name="username" placeholder="lastfm username">
-            <input type="submit">
+            <input class="input" type="text" name="username" placeholder="lastfm username" required><br><br>
+            <div class="control">
+                <div class="select">
+                  <select name="timespan">
+                    <option value="1month">Take songs from...</option>
+                    <option value="7day">Past 7 days</option>
+                    <option value="1month">Past month</option>
+                    <option value="3month">Past 3 months</option>
+                    <option value="6month">Past 6 months</option>
+                    <option value="12month">Past year</option>
+                    <option value="overall">Lifetime</option>
+                  </select>
+                </div>
+            </div><br>
+            <input class="button" type="submit">
         </form>
     </div>
 </body>

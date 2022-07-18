@@ -10,8 +10,8 @@ load_dotenv()
 
 api_key = os.getenv('API_KEY')
 
-def top_tracks(username):
-    url = f'https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user={username}&api_key={api_key}&format=json&period=7day'
+def top_tracks(username, pd):
+    url = f'https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user={username}&api_key={api_key}&format=json&period=${pd}'
     response = requests.get(url)
     data = response.json()
     tracks = data['toptracks']['track']
@@ -96,7 +96,7 @@ def search():
 
 @app.route('/guess')
 def auth():
-    songs = top_tracks(request.args['username'])
+    songs = top_tracks(request.args['username'], request.args['timespan'])
 
     while True:
         random_song = random.choice(songs)
@@ -105,7 +105,10 @@ def auth():
             random_song['lyrics'] = data
             data2 = get_song_info(random_song['name'], random_song['artist']['name'])
             if data2:
-                random_song['song_data'] = data2
+                if 'album' in data2['track']:
+                    random_song['img'] = data2['track']['album']['image'][3]['#text']
+                else:
+                    random_song['img']= 'https://upload.wikimedia.org/wikipedia/commons/3/3c/No-album-art.png'
                 break
 
 

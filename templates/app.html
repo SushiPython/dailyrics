@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>dailyrics</title>
 </head>
 <body>
@@ -15,9 +16,9 @@
         <div id="lyric-box-4" class="lyrics-box hidden">{{song.lyrics.lyrics[song.lyrics.starting_point+3]}}</div>
         <div id="lyric-box-5" class="lyrics-box hidden">{{song.lyrics.lyrics[song.lyrics.starting_point+4]}}</div>
         <div id="lyric-box-6" class="lyrics-box hidden">{{song.lyrics.lyrics[song.lyrics.starting_point+5]}}</div><br>
-        <button onclick="nextLyric()">Next Lyric</button><br><br>
+        <button class="button is-small" onclick="nextLyric()">Next Lyric</button><br><br>
         <div class="autocomplete"><input type="text" placeholder="Guess" id="guess-input"></div>
-        <button onclick="checkGuess()">Check Guess</button>
+        <button class="button"onclick="checkGuess()">Check Guess</button>
     </div>
 </body>
 </html>
@@ -137,7 +138,7 @@ function nextLyric() {
         document.getElementById('player').innerHTML = `
         <h1>you lose</h1>
         <h3>the song was <strong>{{song.name}}</strong> by <strong>{{song.artist.name}}</strong></h3>
-        <img src="{{song.song_data.track.album.image[3]['#text']}}" alt="{{song.name}}">
+        <img src="{{song.img}}" alt="{{song.name}}">
         `
     } else {
         let nextLyric = document.getElementById("lyric-box-" + guessNumber)
@@ -155,7 +156,7 @@ function checkGuess() {
         <h1>you win</h1>
         <h3>the song was <strong>{{song.name}}</strong> by <strong>{{song.artist.name}}</strong></h3>
         <h3>you got it in <strong>${guessNumber}</strong> lines</h3>
-        <img src="{{song.song_data.track.album.image[3]['#text']}}" alt="{{song.name}}"><br>
+        <img src="{{song.img}}" alt="{{song.name}}"><br>
         <button onClick="share()">Share</button>
         `
     } else {
